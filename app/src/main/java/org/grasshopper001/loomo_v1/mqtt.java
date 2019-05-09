@@ -84,10 +84,11 @@ public class mqtt extends AppCompatActivity {
          * if fail: failed at + loc. reasoncode + msg +cause
          */
         String Tcall = "port/rnd/call";
-        String content = "001141|0557673|";
+        String content_1to2 = "001141|0557673|";
+        String content_2to1 = "001142|0557673|";
         final String Tdoor = "port/rnd/door";
         String Tlift = "port/rnd/travel";
-        int qos = 2;
+        int qos = 1;
         MemoryPersistence persistence = new MemoryPersistence();
         try{
             client=new MqttClient(broker,clientId,persistence);
@@ -95,10 +96,20 @@ public class mqtt extends AppCompatActivity {
             conOpts.setUserName(username);
             conOpts.setPassword(password.toCharArray());
             client.connect(conOpts);
-            MqttMessage msg=new MqttMessage(content.getBytes());
-            msg.setQos(qos);
+            MqttMessage msg;
+            if(curFloor==1 && dstFloor ==2){
+                msg =new MqttMessage(content_1to2.getBytes());
+                msg.setQos(qos);
+                client.publish(Tcall,msg);
+            }
+            if(curFloor==2 && dstFloor==1){
+                msg = new MqttMessage(content_2to1.getBytes());
+                msg.setQos(qos);
+                client.publish(Tcall,msg);
+            }
 
-            client.publish(Tcall,msg);
+
+
             mqttPub.setText("call lift msg published");
             client.subscribe(Tdoor);
             client.subscribe(Tlift);

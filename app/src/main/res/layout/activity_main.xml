@@ -79,16 +79,19 @@
 
     <EditText
         android:id="@+id/curFloor"
+        style="@android:style/Widget.AutoCompleteTextView"
         android:layout_width="120dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/curFloorHint"
         app:layout_constraintTop_toTopOf="@+id/curFloorHint" />
 
     <EditText
         android:id="@+id/dstFloor"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="120dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"

@@ -41,6 +41,8 @@ public class vls extends AppCompatActivity {
                         mPose2d = mBase.getOdometryPose(-1);
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
+                        mBase.setUltrasonicObstacleAvoidanceEnabled(true);
+                        mBase.setUltrasonicObstacleAvoidanceDistance((float)0.65);
                         mBase.setLinearVelocity(3);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
@@ -80,10 +82,9 @@ public class vls extends AppCompatActivity {
                                     }
                                 });
                                 mBase.addCheckPoint(0,0,0);
-
                             }
                         });
-                        mBase.addCheckPoint(1.6f, 0,theta);
+                        mBase.addCheckPoint(1.6f, 0,0);
                         mHead.setWorldYaw(0);
                         break;
                     case "go ahead":
@@ -92,6 +93,8 @@ public class vls extends AppCompatActivity {
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
                         mBase.setLinearVelocity(3);
+                        mBase.setUltrasonicObstacleAvoidanceEnabled(true);
+                        mBase.setUltrasonicObstacleAvoidanceDistance((float)0.65);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
                             public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
@@ -129,7 +132,7 @@ public class vls extends AppCompatActivity {
 
                             }
                         });
-                        mBase.addCheckPoint(1.6f,0);
+                        mBase.addCheckPoint(-1.6f,0,theta);
                         break;
                     default:
                         break;
