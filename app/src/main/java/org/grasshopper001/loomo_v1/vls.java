@@ -41,7 +41,7 @@ public class vls extends AppCompatActivity {
                         mPose2d = mBase.getOdometryPose(-1);
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
-                        mBase.setLinearVelocity(2);
+                        mBase.setLinearVelocity(3);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
                             public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
@@ -63,6 +63,24 @@ public class vls extends AppCompatActivity {
                             public void onCheckPointMiss(CheckPoint checkPoint, Pose2D realPose, boolean isLast, int reason) {
                                 System.out.println("check point missed");
                                 Log.d(TAG, "conCheckPointMiss:true");
+                                mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
+                                    @Override
+                                    public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
+                                        Intent vlsGot=getIntent();
+                                        Intent misLift=new Intent(vls.this,mqtt.class);
+                                        misLift.putExtra("mqttService","call lift");
+                                        misLift.putExtra("Fstart",vlsGot.getIntExtra("Fstart",1));
+                                        misLift.putExtra("Fend",vlsGot.getIntExtra("Fend",2));
+                                        startActivity(misLift);
+                                    }
+
+                                    @Override
+                                    public void onCheckPointMiss(CheckPoint checkPoint, Pose2D realPose, boolean isLast, int reason) {
+
+                                    }
+                                });
+                                mBase.addCheckPoint(0,0,0);
+
                             }
                         });
                         mBase.addCheckPoint(1.6f, 0,theta);
@@ -73,7 +91,7 @@ public class vls extends AppCompatActivity {
                         mPose2d = mBase.getOdometryPose(-1);
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
-                        mBase.setLinearVelocity(2);
+                        mBase.setLinearVelocity(3);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
                             public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
@@ -91,6 +109,24 @@ public class vls extends AppCompatActivity {
                             public void onCheckPointMiss(CheckPoint checkPoint, Pose2D realPose, boolean isLast, int reason) {
                                 System.out.println("check point missed");
                                 Log.d(TAG, "conCheckPointMiss:true");
+                                mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
+                                    @Override
+                                    public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
+                                        Intent vlsGot=getIntent();
+                                        Intent misOut=new Intent(vls.this,mqtt.class);
+                                        misOut.putExtra("mqttService","prepare to go out");
+                                        misOut.putExtra("Fstart",vlsGot.getIntExtra("Fstart",1));
+                                        misOut.putExtra("Fend",vlsGot.getIntExtra("Fend",2));
+                                        startActivity(misOut);
+                                    }
+
+                                    @Override
+                                    public void onCheckPointMiss(CheckPoint checkPoint, Pose2D realPose, boolean isLast, int reason) {
+
+                                    }
+                                });
+                                mBase.addCheckPoint(0,0,0);
+
                             }
                         });
                         mBase.addCheckPoint(1.6f,0);
