@@ -16,8 +16,6 @@ import com.segway.robot.sdk.base.bind.ServiceBinder;
 import com.segway.robot.sdk.locomotion.head.Head;
 import com.segway.robot.sdk.locomotion.sbv.Base;
 
-import static android.os.SystemClock.sleep;
-
 public class vls extends AppCompatActivity {
     private static final String TAG = "RobotControl";
     private Base mBase;
