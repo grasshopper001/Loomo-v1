@@ -55,4 +55,66 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:text="@string/qrBut" />
 
+    <TextView
+        android:id="@+id/curFloorHint"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Current Floor: "
+        app:layout_constraintStart_toEndOf="@+id/mqttBut"
+        app:layout_constraintTop_toBottomOf="@+id/qrBut"
+        tools:text="@string/curFloorHint" />
+
+    <TextView
+        android:id="@+id/dstFloorHint"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Destination Floor: "
+        app:layout_constraintStart_toEndOf="@+id/mqttBut"
+        app:layout_constraintTop_toBottomOf="@+id/curFloorHint"
+        tools:text="@string/dstFloorHint" />
+
+    <EditText
+        android:id="@+id/curFloor"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/curFloorHint"
+        app:layout_constraintTop_toTopOf="@+id/curFloorHint" />
+
+    <EditText
+        android:id="@+id/dstFloor"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/dstFloorHint"
+        app:layout_constraintTop_toTopOf="@+id/dstFloorHint" />
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:onClick="enter"
+        android:text="OK"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@+id/curFloor"
+        app:layout_constraintTop_toTopOf="@+id/curFloor"
+        tools:text="@string/enter" />
+
+    <TextView
+        android:id="@+id/setFloorInfo"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/qrBut"
+        app:layout_constraintTop_toTopOf="@+id/qrBut" />
+
 </android.support.constraint.ConstraintLayout>

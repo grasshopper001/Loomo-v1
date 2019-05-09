@@ -140,8 +140,11 @@ public class qr extends AppCompatActivity {
                         /* get the result and go to mqtt activity
                          *
                          */
+                        Intent qrGot=getIntent();
                         Intent qrScanned=new Intent(qr.this,mqtt.class);
                         qrScanned.putExtra("mqttService","call lift");
+                        qrScanned.putExtra("Fstart",qrGot.getIntExtra("Fstart",1));
+                        qrScanned.putExtra("Fend",qrGot.getIntExtra("Fend",2));
                         startActivity(qrScanned);
                     }catch(NotFoundException e){
                         e.printStackTrace();

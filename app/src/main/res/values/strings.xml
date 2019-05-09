@@ -7,4 +7,7 @@
     <string name="mqttRec">nothing received yet</string>
     <string name="qrBut">scan QR code</string>
     <string name="qrAct">Scaning QR Code</string>
+    <string name="dstFloorHint">Destination Floor:</string>
+    <string name="curFloorHint">Current Floor:</string>
+    <string name="enter">OK</string>
 </resources>

@@ -41,6 +41,7 @@ public class vls extends AppCompatActivity {
                         mPose2d = mBase.getOdometryPose(-1);
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
+                        mBase.setLinearVelocity(2);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
                             public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
@@ -49,8 +50,11 @@ public class vls extends AppCompatActivity {
                                 /* call mqtt service
                                  * check floor info and get out of the lift
                                  */
+                                Intent vlsGot = getIntent();
                                 Intent inLift = new Intent(vls.this,mqtt.class);
                                 inLift.putExtra("mqttService","prepare to go out");
+                                inLift.putExtra("Fstart",vlsGot.getIntExtra("Fstart",1));
+                                inLift.putExtra("Fend",vlsGot.getIntExtra("Fend",2));
                                 startActivity(inLift);
 
                             }
@@ -61,7 +65,7 @@ public class vls extends AppCompatActivity {
                                 Log.d(TAG, "conCheckPointMiss:true");
                             }
                         });
-                        mBase.addCheckPoint(1f, 0,theta);
+                        mBase.addCheckPoint(1.6f, 0,theta);
                         mHead.setWorldYaw(0);
                         break;
                     case "go ahead":
@@ -69,6 +73,7 @@ public class vls extends AppCompatActivity {
                         mPose2d = mBase.getOdometryPose(-1);
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
+                        mBase.setLinearVelocity(2);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
                             public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
@@ -88,7 +93,7 @@ public class vls extends AppCompatActivity {
                                 Log.d(TAG, "conCheckPointMiss:true");
                             }
                         });
-                        mBase.addCheckPoint(1f,0);
+                        mBase.addCheckPoint(1.6f,0);
                         break;
                     default:
                         break;

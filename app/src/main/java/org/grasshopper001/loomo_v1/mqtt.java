@@ -32,8 +32,8 @@ public class mqtt extends AppCompatActivity {
     private TextView mqttRec;
     private MqttClient client;
     private String mqttServ;
-    private int dstFloor=2;
-    private int curFloor=1;
+    private int dstFloor;
+    private int curFloor;
 
     private final Handler mqttHandler=new Handler(){
         @Override
@@ -45,25 +45,15 @@ public class mqtt extends AppCompatActivity {
                 switch (mqttServ){
                     case "call lift":
                         if(mDoor.equals("opened") && mFloor==curFloor){
-                            try {
-                                client.disconnect();
-                                client.close();
-                            }catch(MqttException e){
-                                e.printStackTrace();
-                            }
                             Intent takeLift=new Intent(mqtt.this,vls.class);
                             takeLift.putExtra("vls mode","take lift");
+                            takeLift.putExtra("Fstart",curFloor);
+                            takeLift.putExtra("Fend",dstFloor);
                             startActivity(takeLift);
                         }
                         break;
                     case "prepare to go out":
                         if(mDoor.equals("opened") && mFloor==dstFloor){
-                            try {
-                                client.disconnect();
-                                client.close();
-                            }catch(MqttException e){
-                                e.printStackTrace();
-                            }
                             Intent goOut=new Intent(mqtt.this,vls.class);
                             goOut.putExtra("vls mode","go ahead");
                             startActivity(goOut);
@@ -82,6 +72,8 @@ public class mqtt extends AppCompatActivity {
 
         Intent mqttIntent=getIntent();
         mqttServ=mqttIntent.getStringExtra("mqttService");
+        curFloor=mqttIntent.getIntExtra("Fstart",1);
+        dstFloor=mqttIntent.getIntExtra("Fend",2);
         mqttPub=findViewById(R.id.mqttPub);
         mqttRec=findViewById(R.id.mqttRec);
 
@@ -145,7 +137,16 @@ public class mqtt extends AppCompatActivity {
         }catch (MqttException e){
             mqttPub.setText("failed at"+e.getLocalizedMessage()+"."+e.getReasonCode()+e.getMessage()+e.getCause());
         }
-
-
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+        try {
+            client.disconnect();
+            client.close();
+            System.out.println("mqtt service stopped");
+        }catch(MqttException e){
+            e.printStackTrace();
+        }
     }
 }
