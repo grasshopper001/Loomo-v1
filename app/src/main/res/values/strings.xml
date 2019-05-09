@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Loomo-v1</string>
+    <string name="mqttBut">call the lift</string>
+    <string name="vlsBut">go ahead</string>
+    <string name="mqttAct">call lift service</string>
+    <string name="mqttPub">nothing published yet</string>
+    <string name="mqttRec">nothing received yet</string>
+    <string name="qrBut">scan QR code</string>
+    <string name="qrAct">Scaning QR Code</string>
+</resources>
