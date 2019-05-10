@@ -53,7 +53,7 @@ public class mqtt extends AppCompatActivity {
                         }
                         break;
                     case "prepare to go out":
-                        if(mDoor.equals("opened") && mFloor==dstFloor){
+                        if(mDoor.equals("opening") && mFloor==dstFloor){
                             Intent goOut=new Intent(mqtt.this,vls.class);
                             goOut.putExtra("vls mode","go ahead");
                             goOut.putExtra("Fstart",curFloor);

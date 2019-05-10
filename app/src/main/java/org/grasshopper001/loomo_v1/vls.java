@@ -16,6 +16,7 @@ import com.segway.robot.sdk.base.bind.ServiceBinder;
 import com.segway.robot.sdk.locomotion.head.Head;
 import com.segway.robot.sdk.locomotion.sbv.Base;
 
+
 public class vls extends AppCompatActivity {
     private static final String TAG = "RobotControl";
     private Base mBase;
@@ -42,8 +43,8 @@ public class vls extends AppCompatActivity {
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
                         mBase.setUltrasonicObstacleAvoidanceEnabled(true);
-                        mBase.setUltrasonicObstacleAvoidanceDistance((float)0.65);
-                        mBase.setLinearVelocity(3);
+                        mBase.setUltrasonicObstacleAvoidanceDistance((float)0.4);
+                        mBase.setLinearVelocity(5.0f);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
                             public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
@@ -68,9 +69,10 @@ public class vls extends AppCompatActivity {
                                 mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                                     @Override
                                     public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
+                                        //sleep(14000);
                                         Intent vlsGot=getIntent();
                                         Intent misLift=new Intent(vls.this,mqtt.class);
-                                        misLift.putExtra("mqttService","call lift");
+                                        misLift.putExtra("mqttService","wait(5000);call lift");
                                         misLift.putExtra("Fstart",vlsGot.getIntExtra("Fstart",1));
                                         misLift.putExtra("Fend",vlsGot.getIntExtra("Fend",2));
                                         startActivity(misLift);
@@ -92,9 +94,9 @@ public class vls extends AppCompatActivity {
                         mPose2d = mBase.getOdometryPose(-1);
                         mBase.setOriginalPoint(mPose2d);
                         mBase.setControlMode(Base.CONTROL_MODE_NAVIGATION);
-                        mBase.setLinearVelocity(3);
+                        mBase.setLinearVelocity(5.0f);
                         mBase.setUltrasonicObstacleAvoidanceEnabled(true);
-                        mBase.setUltrasonicObstacleAvoidanceDistance((float)0.65);
+                        mBase.setUltrasonicObstacleAvoidanceDistance((float)0.4);
                         mBase.setOnCheckPointArrivedListener(new CheckPointStateListener() {
                             @Override
                             public void onCheckPointArrived(CheckPoint checkPoint, Pose2D realPose, boolean isLast) {
