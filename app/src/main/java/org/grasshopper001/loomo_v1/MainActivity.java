@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private int Fstart;
-    private int Fend;
+    private int Fstart = 1;
+    private int Fend = 2;
     private EditText mCurFloor;
     private EditText mDstFloor;
     private TextView mSetFloorInfo;
