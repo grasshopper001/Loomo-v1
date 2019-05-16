@@ -1,123 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="loomo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/app_name"
-        tools:visibility="visible" />
-
-    <Button
-        android:id="@+id/vlsBut"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:onClick="vlsBut"
-        android:text="go ahead"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:text="@string/vlsBut" />
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/black"
+    >
+<Button
+    android:id="@+id/f1_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="1"
+    android:textSize="50dp"
+    android:textColor="@color/white"
+    android:background="@drawable/black_bt"
+    android:layout_margin="10dp"
+    />
 
     <Button
-        android:id="@+id/mqttBut"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:onClick="mqttBut"
-        android:text="call the lift"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vlsBut"
-        tools:text="@string/mqttBut" />
+        android:id="@+id/f2_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="2"
+        android:textSize="50dp"
+        android:textColor="@color/white"
+        android:background="@drawable/black_bt"
+        android:layout_margin="10dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:background="@color/black"
+        >
+        <TextView
+            android:id="@+id/main_text"
+            android:text="please choose"
+            android:textSize="50dp"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/qrBut"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:onClick="qrBut"
-        android:text="scan QR code"
-        app:layout_constraintStart_toEndOf="@+id/vlsBut"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:text="@string/qrBut" />
 
-    <TextView
-        android:id="@+id/curFloorHint"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Current Floor: "
-        app:layout_constraintStart_toEndOf="@+id/mqttBut"
-        app:layout_constraintTop_toBottomOf="@+id/qrBut"
-        tools:text="@string/curFloorHint" />
-
-    <TextView
-        android:id="@+id/dstFloorHint"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Destination Floor: "
-        app:layout_constraintStart_toEndOf="@+id/mqttBut"
-        app:layout_constraintTop_toBottomOf="@+id/curFloorHint"
-        tools:text="@string/dstFloorHint" />
-
-    <EditText
-        android:id="@+id/curFloor"
-        style="@android:style/Widget.AutoCompleteTextView"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/curFloorHint"
-        app:layout_constraintTop_toTopOf="@+id/curFloorHint" />
-
-    <EditText
-        android:id="@+id/dstFloor"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/dstFloorHint"
-        app:layout_constraintTop_toTopOf="@+id/dstFloorHint" />
-
-    <Button
-        android:id="@+id/enter"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:onClick="enter"
-        android:text="OK"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toEndOf="@+id/curFloor"
-        app:layout_constraintTop_toTopOf="@+id/curFloor"
-        tools:text="@string/enter" />
-
-    <TextView
-        android:id="@+id/setFloorInfo"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/qrBut"
-        app:layout_constraintTop_toTopOf="@+id/qrBut" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

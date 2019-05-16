@@ -1,9 +1,8 @@
-package org.grasshopper001.loomo_v1;
+package org.grasshopper001.loomo_v1.save;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -16,12 +15,13 @@ import com.segway.robot.sdk.base.bind.ServiceBinder;
 import com.segway.robot.sdk.locomotion.head.Head;
 import com.segway.robot.sdk.locomotion.sbv.Base;
 
+import org.grasshopper001.loomo_v1.BaseActivity;
+import org.grasshopper001.loomo_v1.MainActivity;
+import org.grasshopper001.loomo_v1.R;
 
-public class vls extends AppCompatActivity {
+
+public class vls extends BaseActivity {
     private static final String TAG = "RobotControl";
-    private Base mBase;
-    private Pose2D mPose2d;
-    private Head mHead;
     private float theta = (float)Math.PI;
     private String vlsMode;
     private TextView vlsInfo;
@@ -54,7 +54,7 @@ public class vls extends AppCompatActivity {
                                  * check floor info and get out of the lift
                                  */
                                 Intent vlsGot = getIntent();
-                                Intent inLift = new Intent(vls.this,mqtt.class);
+                                Intent inLift = new Intent(vls.this, mqtt.class);
                                 inLift.putExtra("mqttService","prepare to go out");
                                 inLift.putExtra("Fstart",vlsGot.getIntExtra("Fstart",1));
                                 inLift.putExtra("Fend",vlsGot.getIntExtra("Fend",2));
@@ -105,7 +105,7 @@ public class vls extends AppCompatActivity {
                                 /* call mqtt service
                                  * check floor info and get out of the lift
                                  */
-                                Intent home = new Intent(vls.this,MainActivity.class);
+                                Intent home = new Intent(vls.this, MainActivity.class);
                                 startActivity(home);
 
                             }
@@ -160,8 +160,6 @@ public class vls extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-        mHead.unbindService();
-        mBase.unbindService();
         finish();
     }
     private void init(){
